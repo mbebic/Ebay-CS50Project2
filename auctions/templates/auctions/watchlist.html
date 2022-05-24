@@ -1,0 +1,52 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="container">
+        <h4 class="text-center">Watchlist</h4>
+        <div class="row">
+            <div class="col">
+                {% for item in watchlist %}
+                    <div class=card>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    <img height="200" width="auto" src="{{ item.image.url }}" alt="Alt: Photo of {{ item.title }}">
+                                </div>
+                                <div class="col">
+                                    {% if item.activelisting == True %}
+                                    <span class="mb-2 badge badge-pill bg-success">Active Listing</span>
+                                    {% else %}
+                                    <span class="badge badge-pill bg-danger">Listing is closed.</span>
+                                    {% endif %}
+                                    <h4><a href="{% url 'listing' item.id %}">{{ item.title }}</a></h4>
+                                    <h6 class="text-muted card-subtitle mb-2">
+                                        {% if item.activelisting == True %}
+                                            Current bid: ${{ item.current_bid }}
+                                            {% if item.current_winBid == user %}
+                                                <br>You are winning this auction!
+                                            {% endif %}
+                                        {% else %}
+                                            {% if item.current_winBid == user %}
+                                                You won this auction!
+                                            {% else %}
+                                                {{ item.current_winBid }} won this auction.
+                                            {% endif %}
+                                        {% endif %}
+                                    </h6>
+                                    <form action="{% url 'removeWatchlist' item.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="submit" class="btn btn-primary" value="Remove from Watchlist">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    No active listings.
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

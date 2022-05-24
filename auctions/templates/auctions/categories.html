@@ -1,0 +1,18 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-align center">Categories</h2>
+        {% for category in categories %}
+            <div class="card">
+                <div class="card-body">
+                    <a class="btn btn-primary center" role="button" href="{% url 'category' category.id %}">{{ category.name }}</a>
+                </div>
+            </div>
+        {% empty %}
+            No active listings.
+        {% endfor %}
+    </div>
+    
+{% endblock %}

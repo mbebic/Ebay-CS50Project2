@@ -1,0 +1,145 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <div class="container">
+        {% if auctionitem.activelisting == False %}
+            <div class="alert" role="alert" style="text-align: right;">
+                This auction has finished.
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col">
+                <img height="auto" width="200" class="card-img-top mt-6" src="{{ auctionitem.image.url }}" alt="Alt: Photo of {{ auctionitem.title }}">
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="row" style="text-align: right;">
+                            <!-- if item is in watchlist  -->
+                            {% if user.is_authenticated %}
+                                <form action="{% url 'editWatchlist' auctionItem_id %}" method="POST" class="d-inline-block">
+                                    {% csrf_token %}
+                                    {% if item_inWatchlist %}
+                                        <button type="submit" class="btn btn-success mb-3"><i class="fa fa-minus"></i> Added to Watchlist</button>
+                                    {% else %}
+                                        <button type="submit" class="btn btn-outline-secondary mb-3"><i class="fa fa-plus"></i> Add to Watchlist</button>
+                                    {% endif %}
+                                </form>
+                            {% endif %}
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <!-- listing information  -->
+                                        <h4 class="card-title">{{auctionitem.title }}</h4>
+                                        <p class="card-text">{{ auctionitem.description }}</p>
+                                        <p>Created by {{ auctionitem.author }} at {{ auctionitem.timePosted }}</p>
+                                        <!-- Notifying what are the winning bid and who is the winner  -->
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title" style="text-align: center;">
+                                                            {% if auctionitem.activelisting %} Current bid: {% else %} Winning bid:{% endif %} ${{auctionitem.current_bid}}
+                                                        </h4>
+                                                        {% if auctionitem.activelisting %}
+                                                            <h6 class="text-muted card-subtitle mb-2" style="text-align: center;">{{ auctionitem.num_bids }} bids so far</h6>
+                                                            {% if auctionitem.current_winBid == user %} 
+                                                                <span class="badge bg-success mb-3">Your bid is the highest bid!</span>
+                                                            {% else %}
+                                                                <span class="badge bg-danger mb-3">Your bid is not the highest, place another one to claim your spot!</span>
+                                                            {% endif %}
+                                                        
+                                                            <!-- Form for bidding -->
+                                                            {% if user.is_authenticated %}
+                                                                <table>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <form action="{% url 'addbid' auctionItem_id %}" method="POST">
+                                                                                {% csrf_token %}
+                                                                                <table class="center">
+                                                                                    {{ bidForm|crispy }}
+                                                                                </table>
+                                                                                <div class="form-group">
+                                                                                    <button type="submit" class="btn btn-primary mt-3 mb-3">Place Your Bid</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                        <td class="align-bottom">
+                                                                            {% if user.is_authenticated and user == auctionitem.author and auctionitem.activelisting %}
+                                                                            <form action="{% url 'closeAuction' auctionItem_id %}" method="POST">
+                                                                                {% csrf_token %}
+                                                                                <button type="submit" class="btn btn-danger mt-3 mb-3">Close Auction</button>
+                                                                            </form>
+                                                                            {% endif %}
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            <!-- creating message for user who is not signed in  -->
+                                                            {% else %}
+                                                                <p>Please <strong><a href="{% url 'login' %}">sign in</a></strong> to place a bid.</p>
+                                                            {% endif %}
+                                                         <!-- if listing is closed, show the winner of the bidding  -->
+                                                        {% else %}
+                                                            {% if auctionitem.current_winBid == user %}
+                                                                <span class="badge bg-success">You won this auction!</span>
+                                                            {% else %}
+                                                                <span class="badge bg-danger">You did not win this auction.</span>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h6>Add a Comment</h6>
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'addComment' auctionItem_id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ commentForm|crispy }}
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-secondary mb-3 mt-3" type="submit">Add Comment</button></div>
+                            </div>
+                        </form>
+                    <!-- message to login to add a comment -->
+                    {% else %}
+                        <p><small>Please <strong><a href="{% url 'login' %}">sign in</a></strong> to add a comment.</small></p>
+                    {% endif %}
+                    
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="column">
+                        <h4>Comments Section</h4>
+                        {% for comment in comments %}
+                            <span class="badge badge-primary"> {{ allcomments }}</span>
+                            <div class="card">
+                                <div class="card-body">
+                                    <p>{{ comment.user }}: {{ comment.comment }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+{% endblock %}
+
+
