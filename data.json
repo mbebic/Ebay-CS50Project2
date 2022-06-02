@@ -1,0 +1,213 @@
+[
+{
+  "model": "auctions.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$awPgTnB5JZW41kku1IvBnh$U4j7OFoCO35WeNQlUw4YwvjZZd5JYOE/ntF355QF1xI=",
+    "last_login": "2022-05-24T14:19:41.795Z",
+    "is_superuser": true,
+    "username": "marijabebic",
+    "first_name": "",
+    "last_name": "",
+    "email": "marijab96@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2022-05-17T14:55:19.613Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auctions.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$320000$y9bslgDoxbnFm8MJfjdWVO$tUi3JE0FRbD3Llj9rnRyQTzJgd9HAj48ckUjCyeZckU=",
+    "last_login": "2022-05-24T14:19:59.739Z",
+    "is_superuser": false,
+    "username": "testuser",
+    "first_name": "",
+    "last_name": "",
+    "email": "testuser@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-05-24T14:19:59.382Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 1,
+  "fields": {
+    "name": "Music"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 2,
+  "fields": {
+    "name": "Toys"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 3,
+  "fields": {
+    "name": "Food"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 4,
+  "fields": {
+    "name": "Clothing"
+  }
+},
+{
+  "model": "auctions.auctionitem",
+  "pk": 8,
+  "fields": {
+    "title": "Bose Headphones",
+    "description": "Listen to your favorite albums with the best headphones around!",
+    "startBid": 100,
+    "image": "uploads/bose_headphones.jpg",
+    "itemCategory": 1,
+    "activelisting": false,
+    "author": 1,
+    "timePosted": "2022-05-20T15:16:51.050Z",
+    "watchedby": [
+      1
+    ]
+  }
+},
+{
+  "model": "auctions.auctionitem",
+  "pk": 9,
+  "fields": {
+    "title": "Lego Flower Bouquet",
+    "description": "Have some fun building this cool Lego Flower set and never have to buy flowers again!",
+    "startBid": 50,
+    "image": "uploads/flower_bouquet_lego.jpg",
+    "itemCategory": 2,
+    "activelisting": true,
+    "author": 1,
+    "timePosted": "2022-05-20T15:18:08.157Z",
+    "watchedby": [
+      1
+    ]
+  }
+},
+{
+  "model": "auctions.auctionitem",
+  "pk": 10,
+  "fields": {
+    "title": "Coffee Subscription - 1 Year",
+    "description": "Chamberlain coffee subscription for one whole year! That's a lot of coffee. Caffeinate yourself with the hottest and best tasting coffee around.",
+    "startBid": 75,
+    "image": "uploads/chamberlain_coffee.jpg",
+    "itemCategory": 3,
+    "activelisting": true,
+    "author": 1,
+    "timePosted": "2022-05-20T15:20:41.623Z",
+    "watchedby": []
+  }
+},
+{
+  "model": "auctions.auctionitem",
+  "pk": 11,
+  "fields": {
+    "title": "Matcha Powder",
+    "description": "Get your daily caffeine with this fantastic green tea powder. Mix with milk or water, and drink your morning blues away!",
+    "startBid": 15,
+    "image": "uploads/matcha.jpg",
+    "itemCategory": 3,
+    "activelisting": true,
+    "author": 1,
+    "timePosted": "2022-05-20T15:21:01.914Z",
+    "watchedby": [
+      1
+    ]
+  }
+},
+{
+  "model": "auctions.auctionitem",
+  "pk": 12,
+  "fields": {
+    "title": "Cozy Cardigan",
+    "description": "Cute cardigan that is fuzzy and oversized. Perfect to wear over a dress or with a pair of jeans.",
+    "startBid": 35,
+    "image": "uploads/cardigan.jpg",
+    "itemCategory": 4,
+    "activelisting": true,
+    "author": 1,
+    "timePosted": "2022-05-20T15:21:28.419Z",
+    "watchedby": []
+  }
+},
+{
+  "model": "auctions.auctionitem",
+  "pk": 13,
+  "fields": {
+    "title": "Midi Dress",
+    "description": "Go out on the town with this fun and fresh dress! Midi length and cool design. Pair with some boots and a cute purse and you are good to go!",
+    "startBid": 25,
+    "image": "uploads/midi-dress.jpg",
+    "itemCategory": 4,
+    "activelisting": false,
+    "author": 1,
+    "timePosted": "2022-05-20T15:21:48.052Z",
+    "watchedby": [
+      1
+    ]
+  }
+},
+{
+  "model": "auctions.auctionitem",
+  "pk": 14,
+  "fields": {
+    "title": "Harry Styles Concert Tickets",
+    "description": "See the most famous man on the planet right now, Mr. Harry Styles! Two tickets to MSG in December, grab them now before its too late!",
+    "startBid": 200,
+    "image": "uploads/concert_tickets.jpg",
+    "itemCategory": 1,
+    "activelisting": true,
+    "author": 1,
+    "timePosted": "2022-05-20T15:22:18.656Z",
+    "watchedby": []
+  }
+},
+{
+  "model": "auctions.auctionitem",
+  "pk": 17,
+  "fields": {
+    "title": "Deck of Cards",
+    "description": "Perfect to play games with your friends or on your own!",
+    "startBid": 10,
+    "image": "uploads/cards_cJCjaDD.jpg",
+    "itemCategory": 2,
+    "activelisting": true,
+    "author": 1,
+    "timePosted": "2022-05-24T13:29:59.971Z",
+    "watchedby": []
+  }
+},
+{
+  "model": "auctions.usercomment",
+  "pk": 12,
+  "fields": {
+    "comment": "such a cute dress, i love it!!!!",
+    "timeofComment": "2022-05-24T14:08:33.641Z",
+    "item": 13,
+    "user": 1
+  }
+},
+{
+  "model": "auctions.userbid",
+  "pk": 12,
+  "fields": {
+    "bidAmount": 30,
+    "item": 13,
+    "user": 1
+  }
+}
+]
