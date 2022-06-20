@@ -1,5 +1,5 @@
 # Ebay-CS50Project2
-Project 2 for Harvard's CS50 Web Programming Course with Python and Javascript.
+Project 2 for Harvard's CS50 Web Programming Course with Python and Javascript. To be able to view the website without downloading the code, visit: http://ebaywebsite.herokuapp.com/
 
 ## Project Requirements
 
